@@ -81,14 +81,12 @@ sub _make_ua {
       shift->header( 'Authorization' => $self->_auth_header );
     }
   );
-  #  $ua->add_handler( "request_send",  sub { shift->dump; return } );
-  #  $ua->add_handler( "response_done", sub { shift->dump; return } );
   return $ua;
 }
 
 sub _auth_header {
   my $self = shift;
-  return "Basic "
+  return 'Basic '
    . MIME::Base64::encode( join( ':', $self->username, $self->secret ),
     '' );
 }
