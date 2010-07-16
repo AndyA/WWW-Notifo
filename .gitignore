@@ -1,0 +1,13 @@
+*.bak
+*.tar.gz
+.lwpcookies
+.prove
+Build
+Makefile
+Makefile.old
+Session.vim
+WWW-Notifo-*
+_build*
+blib*
+cover_db
+pm_to_blib*
