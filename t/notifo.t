@@ -5,7 +5,7 @@ use warnings;
 
 use lib qw( t/lib );
 
-use Test::More tests => 24;
+use Test::More tests => 25;
 use JSON;
 use MIME::Base64;
 use WWW::Notifo;
@@ -142,6 +142,14 @@ is_deeply $not->send_notification(
   response_message => 'OK'
  },
  'send_notification';
+
+is_deeply $not->last,
+ {
+  status           => 'success',
+  response_code    => 2201,
+  response_message => 'OK'
+ },
+ 'last response';
 
 want_error {
   $not->send_notification(
