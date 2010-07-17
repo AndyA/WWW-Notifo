@@ -111,7 +111,7 @@ handle_request {
     msg   => 'Testing...',
     label => 'Test',
     title => 'Hoot',
-    url   => 'http://hexten.net/'
+    uri   => 'http://hexten.net/'
    },
    'content';
   return response {
@@ -126,7 +126,7 @@ is_deeply $not->send_notification(
   msg   => 'Testing...',
   label => 'Test',
   title => 'Hoot',
-  url   => 'http://hexten.net/'
+  uri   => 'http://hexten.net/'
  ),
  {
   status           => 'success',

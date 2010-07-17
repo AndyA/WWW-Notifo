@@ -35,7 +35,7 @@ our $VERSION = '0.03';
        msg   => 'Hello!',
        label => 'JAPH',
        title => 'Boo',
-       url   => 'http://example.com/'
+       uri   => 'http://example.com/'
     );
 
 =head1 DESCRIPTION
@@ -141,7 +141,7 @@ URL is used.
     msg   => 'Testing...',
     label => 'Test',
     title => 'Hoot',
-    url   => 'http://hexten.net/'
+    uri   => 'http://hexten.net/'
   );
 
 =head3 C<< api >>
@@ -156,7 +156,7 @@ calling C<api>. For example, the above send_notification example can also be wri
     msg   => 'Testing...',
     label => 'Test',
     title => 'Hoot',
-    url   => 'http://hexten.net/'
+    uri   => 'http://hexten.net/'
   );
 
 =cut
