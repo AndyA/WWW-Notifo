@@ -85,6 +85,15 @@ sub _need {
 
 =head2 C<< new >>
 
+Create a new C<WWW::Notifo> object. In common with all methods exposed
+by the module accepts a number of key => value pairs. The C<username>
+and C<secret> options are mandatory:
+
+  my $notifo = WWW::Notifo->new(
+    username => 'alice',
+    secret   => 'x3122b4c4d3bad5e8d7397f0501b617ce60afe5d'
+  );
+
 =cut
 
 sub new {
