@@ -193,7 +193,7 @@ sub _api {
   $self->{last} = eval { JSON->new->decode( $resp->content ) };
   my $err = $@;
   croak $resp->status_line if $resp->is_error;
-  croak $err if $err;
+  croak $err if $err; # Only report errors parsing JSON we have a 200
   return $self->last;
 }
 
