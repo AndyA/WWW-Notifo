@@ -65,21 +65,38 @@ use constant API => 'https://api.notifo.com/v1';
 use accessors::ro qw( username secret );
 
 BEGIN {
-  my @meth = qw( subscribe_user send_notification );
-  for my $m ( @meth ) {
+  my %meth = (
+    subscribe_user => {
+      required => [qw( username )],
+      optional => [],
+    },
+    send_notification => {
+      required => [qw( to msg )],
+      optional => [qw( label title uri )],
+    },
+  );
+  for my $m ( keys %meth ) {
+    my $spec = $meth{$m};
     no strict 'refs';
-    *{$m} = sub { shift->api( $m, @_ ) };
+    *{$m} = sub {
+      shift->_api( $m, @{$spec}{ 'required', 'optional' }, @_ );
+    };
   }
 }
 
 sub _need {
-  my ( $need, @args ) = @_;
+  my ( $need, $optional, @args ) = @_;
   croak "Expected a number of key => value pairs"
    if @args % 2;
   my %args = @args;
   my @missing = grep { !defined $args{$_} } @$need;
   croak "Missing options: ", join( ', ', sort @missing )
    if @missing;
+  if ( defined $optional ) {
+    my %ok = map { $_ => 1 } @$need, @$optional;
+    my @extra = grep { !$ok{$_} } keys %args;
+    croak "Illegal otions: ", join( ', ', sort @extra ) if @extra;
+  }
   return %args;
 }
 
@@ -98,7 +115,7 @@ and C<secret> options are mandatory:
 
 sub new {
   my $class = shift;
-  return bless { _need( [ 'secret', 'username' ], @_ ) }, $class;
+  return bless { _need( [ 'secret', 'username' ], [], @_ ) }, $class;
 }
 
 =head2 API Calls
@@ -161,14 +178,18 @@ calling C<api>. For example, the above send_notification example can also be wri
 
 =cut
 
-sub api {
-  my ( $self, $method, @args ) = @_;
-  croak "Expected a number of key => value pairs"
-   if @args % 2;
+sub _api {
+  my ( $self, $method, $need, $optional, @args ) = @_;
+  my %args = _need( $need, $optional, @args );
   my $resp
-   = $self->_ua->post( join( '/', API, $method ), Content => \@args );
+   = $self->_ua->post( join( '/', API, $method ), Content => \%args );
   croak $resp->status_line if $resp->is_error;
   return JSON->new->decode( $resp->content );
+}
+
+sub api {
+  my ( $self, $method, @args ) = @_;
+  return $self->_api( $method, [], undef, @args );
 }
 
 sub _make_ua {

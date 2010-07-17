@@ -5,7 +5,7 @@ use warnings;
 
 use lib qw( t/lib );
 
-use Test::More tests => 20;
+use Test::More tests => 24;
 use JSON;
 use MIME::Base64;
 use WWW::Notifo;
@@ -67,9 +67,17 @@ sub decode_form {
   return $vars;
 }
 
-want_error { WWW::Notifo->new } qr{missing}i, 'missing args';
+want_error { WWW::Notifo->new } qr{Missing}i, 'missing args';
 want_error { WWW::Notifo->new( 'foo' ) } qr{a number}i,
  'odd number of args';
+want_error {
+  WWW::Notifo->new(
+    username => 'alice',
+    secret   => '123123',
+    foo      => 1
+  );
+}
+qr{Illegal}i, 'illegal args';
 
 ok my $not = WWW::Notifo->new(
   username => 'alice',
@@ -134,6 +142,17 @@ is_deeply $not->send_notification(
   response_message => 'OK'
  },
  'send_notification';
+
+want_error {
+  $not->send_notification(
+    to      => 'hexten',
+    msg     => 'Testing...',
+    label   => 'Test',
+    caption => 'Hoot',
+    url     => 'http://hexten.net/'
+  );
+}
+qr{Illegal.+\bcaption\b.+\burl\b}i, 'illegal';
 
 # vim:ts=2:sw=2:et:ft=perl
 
