@@ -17,7 +17,7 @@ SYNOPSIS
            msg   => 'Hello!',
            label => 'JAPH',
            title => 'Boo',
-           url   => 'http://example.com/'
+           uri   => 'http://example.com/'
         );
 
 DESCRIPTION
@@ -86,7 +86,7 @@ DESCRIPTION
         msg   => 'Testing...',
         label => 'Test',
         title => 'Hoot',
-        url   => 'http://hexten.net/'
+        uri   => 'http://hexten.net/'
       );
 
    "api"
@@ -101,7 +101,7 @@ DESCRIPTION
         msg   => 'Testing...',
         label => 'Test',
         title => 'Hoot',
-        url   => 'http://hexten.net/'
+        uri   => 'http://hexten.net/'
       );
 
 AUTHOR
