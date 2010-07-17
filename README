@@ -2,7 +2,7 @@ NAME
     WWW::Notifo - Unoffical notifo.com API
 
 VERSION
-    This document describes WWW::Notifo version 0.04
+    This document describes WWW::Notifo version 0.05
 
 SYNOPSIS
         use WWW::Notifo;
