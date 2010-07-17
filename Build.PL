@@ -3,18 +3,14 @@ use warnings;
 
 use Module::Build;
 
-eval 'use ExtUtils::MakeMaker::Coverage';
-
 my $build = Module::Build->new(
   module_name       => 'WWW::Notifo',
   dist_author       => 'Andy Armstrong <andy@hexten.net>',
   dist_version_from => 'lib/WWW/Notifo.pm',
   requires          => {
-    'Getopt::Long'   => 0,
     'JSON'           => '2.00',
     'LWP::UserAgent' => 0,
     'MIME::Base64'   => 0,
-    'Test::Deep'     => 0,
     'Test::More'     => 0,
     'accessors::ro'  => 0,
   },
