@@ -11,7 +11,7 @@ use MIME::Base64;
 
 =head1 NAME
 
-WWW::Notifo - Unoffical notifo.com API
+WWW::Notifo - Interface to notifo.com notification service
 
 =head1 VERSION
 
