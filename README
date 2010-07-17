@@ -40,6 +40,15 @@ DESCRIPTION
       can reach your users!
 
   "new"
+    Create a new "WWW::Notifo" object. In common with all methods exposed by
+    the module accepts a number of key => value pairs. The "username" and
+    "secret" options are mandatory:
+
+      my $notifo = WWW::Notifo->new(
+        username => 'alice',
+        secret   => 'x3122b4c4d3bad5e8d7397f0501b617ce60afe5d'
+      );
+
   API Calls
     API calls provide access to the Notifo API. On success they return a
     reference to a hash containing the response from notifo.com. On API

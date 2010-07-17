@@ -1,4 +1,10 @@
 Revision history for WWW-Notifo
 
-0.01    
-        - Initial release.
+0.02  2010-Jul-17    
+
+      - Documentation for new method.
+      - Removed spurious bin/notifo
+
+0.01  2010-Jul-17    
+
+      - Initial release.
