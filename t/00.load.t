@@ -1,9 +1,7 @@
-use Test::More tests => 3;
+use Test::More tests => 1;
 
 BEGIN {
-    use_ok( 'WWW::Notifo' );
-    use_ok( 'WWW::Notifo::Friend' );
-    use_ok( 'WWW::Notifo::Message' );
+  use_ok( 'WWW::Notifo' );
 }
 
 diag( "Testing WWW::Notifo $WWW::Notifo::VERSION" );
