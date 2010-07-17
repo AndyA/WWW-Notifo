@@ -50,10 +50,11 @@ DESCRIPTION
       );
 
   API Calls
-    API calls provide access to the Notifo API. On success they return a
-    reference to a hash containing the response from notifo.com. On API
-    errors the hash will contain information about the error. On HTTP errors
-    an exception will be thrown.
+    API calls provide access to the Notifo API.
+
+    On success they return a reference to a hash containing the response
+    from notifo.com. On errors an exception will be thrown. In the case of
+    an error the response hash can be retrieved by calling "last".
 
    "subscribe_user"
     Service providers must call this method when users want to subscribe to
@@ -103,6 +104,10 @@ DESCRIPTION
         title => 'Hoot',
         uri   => 'http://hexten.net/'
       );
+
+   "last"
+    Get the most recent response (a hash ref). Useful in the case of an HTTP
+    error (which throws an exception).
 
 AUTHOR
     Andy Armstrong "<andy@hexten.net>"
