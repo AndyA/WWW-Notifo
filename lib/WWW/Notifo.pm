@@ -165,8 +165,9 @@ URL is used.
 =head3 C<< api >>
 
 API entry points other than C<subscribe_user> and C<send_notification>
-(of which there are currently none) can be accessed directly by
-calling C<api>. For example, the above send_notification example can also be written as:
+(of which there are currently none) can be accessed directly by calling
+C<api>. For example, the above send_notification example can also be
+written as:
 
   my $resp = $notifo->api(
     'send_notification',
@@ -207,7 +208,7 @@ sub _make_ua {
   $ua->agent( join ' ', __PACKAGE__, $VERSION );
   $ua->add_handler(
     request_send => sub {
-      shift->header( 'Authorization' => $self->_auth_header );
+      shift->header( Authorization => $self->_auth_header );
     }
   );
   return $ua;
