@@ -1,5 +1,5 @@
 NAME
-    WWW::Notifo - Unoffical notifo.com API
+    WWW::Notifo - Interface to notifo.com notification service
 
 VERSION
     This document describes WWW::Notifo version 0.05
