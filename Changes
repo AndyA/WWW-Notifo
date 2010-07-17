@@ -1,5 +1,10 @@
 Revision history for WWW-Notifo
 
+0.04  2010-Jul-17    
+
+      - Clarify error handling documentation
+      - Make most recent response available via last accessor.
+
 0.03  2010-Jul-17    
 
       - Replace url with uri in documentation.
