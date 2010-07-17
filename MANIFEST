@@ -1,0 +1,10 @@
+bin/notifo
+Build.PL
+Changes
+lib/WWW/Notifo.pm
+MANIFEST
+README
+t/00.load.t
+t/notifo.t
+t/pod-coverage.t
+t/pod.t

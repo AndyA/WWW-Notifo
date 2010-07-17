@@ -1,7 +1,9 @@
 \.tmproj$
 \.tar\.gz$
 \B\.svn\b
+\B\.git\b
 ^\.cvsignore
+^\.gitignore
 ^\.prove
 
 # Makemaker generated files and dirs.
@@ -26,3 +28,6 @@
 ^TODO$
 \.swp$
 ^tags$
+^MYMETA.yml$
+\..+\.swp$
+Session\.vim$
