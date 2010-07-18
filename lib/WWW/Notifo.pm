@@ -76,10 +76,9 @@ BEGIN {
     },
   );
   for my $m ( keys %meth ) {
-    my $spec = $meth{$m};
     no strict 'refs';
     *{$m} = sub {
-      shift->_api( $m, @{$spec}{ 'required', 'optional' }, @_ );
+      shift->_api( $m, @{ $meth{$m} }{ 'required', 'optional' }, @_ );
     };
   }
 }
@@ -221,8 +220,7 @@ sub _make_ua {
 sub _auth_header {
   my $self = shift;
   return 'Basic '
-   . MIME::Base64::encode( join( ':', $self->username, $self->secret ),
-    '' );
+   . encode_base64( join( ':', $self->username, $self->secret ), '' );
 }
 
 sub _ua {

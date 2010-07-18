@@ -35,8 +35,7 @@ sub check_request {
   my $auth = $req->header( 'Authorization' );
   like $auth, qr{^Basic\s+\S+$}, 'auth header';
   my ( $cred ) = $auth =~ m{^Basic\s+(\S+)};    # like tramples on $1
-  my ( $username, $secret ) = split /:/, MIME::Base64::decode( $cred ),
-   2;
+  my ( $username, $secret ) = split /:/, decode_base64( $cred ), 2;
   is $username, $not->username, 'username';
   is $secret,   $not->secret,   'secret';
 }
