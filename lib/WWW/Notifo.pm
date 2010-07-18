@@ -9,6 +9,10 @@ use Data::Dumper;
 use LWP::UserAgent;
 use MIME::Base64;
 
+use base qw( Exporter );
+
+our @EXPORT_OK = qw( notifo );
+
 =head1 NAME
 
 WWW::Notifo - Interface to notifo.com notification service
@@ -226,6 +230,32 @@ sub _auth_header {
 sub _ua {
   my $self = shift;
   return $self->{_ua} ||= $self->_make_ua;
+}
+
+=head2 Procedural Interface
+
+The following convenience subroutine may be exported:
+
+=head3 C<< notifo >>
+
+Send a notification. 
+
+  notifo(
+    username  => 'alice',
+    secret    => 'x3122b4c4d3bad5e8d7397f0501b617ce60afe5d',
+    to        => 'hexten',
+    msg       => 'Testing...',
+    label     => 'Test',
+    title     => 'Hoot',
+    uri       => 'http://hexten.net/'
+  );
+
+=cut
+
+sub notifo {
+  my %opt = _need( [], undef, @_ );
+  return WWW::Notifo->new( map { $_ => delete $opt{$_} }
+     qw( username secret ) )->send_notification( %opt );
 }
 
 1;

@@ -1,5 +1,10 @@
 Revision history for WWW-Notifo
 
+0.08  2010-Jul-18
+
+      - Add notifo static method
+      - Add notifo program
+
 0.07  2010-Jul-18
 
       - Use message from service in errors if available

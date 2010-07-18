@@ -8,7 +8,7 @@ use lib qw( t/lib );
 use Test::More tests => 38;
 use JSON;
 use MIME::Base64;
-use WWW::Notifo;
+use WWW::Notifo qw( notifo );
 
 sub want_error(&$;$) {
   my ( $cb, $re, $msg ) = @_;
