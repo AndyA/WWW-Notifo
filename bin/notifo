@@ -17,6 +17,7 @@ my %Opt = (
   label    => undef,
   title    => undef,
   uri      => undef,
+  help     => undef,
 );
 
 if ( -e CONFIG ) {
@@ -33,7 +34,9 @@ GetOptions(
   'L|label=s'    => \$Opt{label},
   'title=s'      => \$Opt{title},
   'uri=s'        => \$Opt{uri},
+  'help'         => \$Opt{help},
 ) or do { print STDERR syntax(); exit 1 };
+do { print syntax(); exit 0 } if delete $Opt{help};
 
 $Opt{msg} = join ' ', grep defined, $Opt{msg}, @ARGV;
 $Opt{to} ||= $Opt{username};
@@ -56,6 +59,7 @@ Options:
   -L, --label     Label text
       --title     Title text
       --uri       URI to link message to
+      --help      See this text
 
 Defaults may be provided in inifile format in ~/.notifo.
 
