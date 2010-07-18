@@ -1,5 +1,9 @@
 Revision history for WWW-Notifo
 
+0.07  2010-Jul-18
+
+      - Use message from service in errors if available
+
 0.06  2010-Jul-17
 
       - Remove dependency on Test::Deep, Getopt::Long

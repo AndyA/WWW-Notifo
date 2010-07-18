@@ -5,7 +5,7 @@ use warnings;
 
 use lib qw( t/lib );
 
-use Test::More tests => 25;
+use Test::More tests => 27;
 use JSON;
 use MIME::Base64;
 use WWW::Notifo;
@@ -161,6 +161,25 @@ want_error {
   );
 }
 qr{Illegal.+\bcaption\b.+\burl\b}i, 'illegal';
+
+handle_request {
+  my $req  = shift;
+  my $resp = response {
+    status           => 'error',
+    response_code    => 1101,
+    response_message => 'Invalid Credentials'
+  };
+  $resp->code( 401 );
+  return $resp;
+};
+
+want_error {
+  $not->send_notification(
+    to  => 'hexten',
+    msg => 'Testing...',
+  );
+}
+qr{1101 Invalid Credentials}i, 'error from notifo';
 
 # vim:ts=2:sw=2:et:ft=perl
 

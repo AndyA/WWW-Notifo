@@ -190,11 +190,15 @@ sub _api {
   my %args = _need( $need, $optional, @args );
   my $resp
    = $self->_ua->post( join( '/', API, $method ), Content => \%args );
-  $self->{last} = eval { JSON->new->decode( $resp->content ) };
+  my $rd = $self->{last} = eval { JSON->new->decode( $resp->content ) };
   my $err = $@;
-  croak $resp->status_line if $resp->is_error;
-  croak $err if $err; # Only report errors parsing JSON we have a 200
-  return $self->last;
+  if ( $resp->is_error ) {
+    croak join ' ', @{$rd}{ 'response_code', 'response_message' }
+     if !$err && $rd->{status} eq 'error';
+    croak $resp->status_line;
+  }
+  croak $err if $err;    # Only report errors parsing JSON we have a 200
+  return $rd;
 }
 
 sub api {
