@@ -15,11 +15,11 @@ WWW::Notifo - Interface to notifo.com notification service
 
 =head1 VERSION
 
-This document describes WWW::Notifo version 0.07
+This document describes WWW::Notifo version 0.08
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 =head1 SYNOPSIS
 
