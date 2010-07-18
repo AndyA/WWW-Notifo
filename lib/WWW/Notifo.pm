@@ -23,20 +23,20 @@ our $VERSION = '0.08';
 
 =head1 SYNOPSIS
 
-    use WWW::Notifo;
-    my $notifo = WWW::Notifo->new( username => 'foo', secret => 'xabc123' );
-   
-    # Subscribe a user...
-    my $status = $notifo->subscribe_user( username => 'bar' );
-    
-    # Send a notification
-    my $status = $notifo->send_notification(
-       to    => 'someone',
-       msg   => 'Hello!',
-       label => 'JAPH',
-       title => 'Boo',
-       uri   => 'http://example.com/'
-    );
+  use WWW::Notifo;
+  my $notifo = WWW::Notifo->new( username => 'foo', secret => 'xabc123' );
+  
+  # Subscribe a user...
+  my $status = $notifo->subscribe_user( username => 'bar' );
+  
+  # Send a notification
+  my $status = $notifo->send_notification(
+    to    => 'someone',
+    msg   => 'Hello!',
+    label => 'JAPH',
+    title => 'Boo',
+    uri   => 'http://example.com/'
+  );
 
 =head1 DESCRIPTION
 
