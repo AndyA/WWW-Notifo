@@ -21,8 +21,8 @@ my %Opt = (
 );
 
 if ( -e CONFIG ) {
-  my $conf = Config::Tiny->read( CONFIG );
-  die "$Config::Tiny::errstr\n" unless defined $conf;
+  my $conf = Config::Tiny->read( CONFIG )
+   || die "$Config::Tiny::errstr\n";
   %Opt = ( %Opt, %{ $conf->{_} } );
 }
 
