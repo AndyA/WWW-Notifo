@@ -2,7 +2,7 @@ NAME
     WWW::Notifo - Interface to notifo.com notification service
 
 VERSION
-    This document describes WWW::Notifo version 0.08
+    This document describes WWW::Notifo version 0.09
 
 SYNOPSIS
       use WWW::Notifo;
