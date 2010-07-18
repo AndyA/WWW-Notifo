@@ -5,7 +5,7 @@ use warnings;
 
 use lib qw( t/lib );
 
-use Test::More tests => 27;
+use Test::More tests => 38;
 use JSON;
 use MIME::Base64;
 use WWW::Notifo;
@@ -143,6 +143,21 @@ is_deeply $not->send_notification(
  },
  'send_notification';
 
+is_deeply $not->api(
+  'send_notification',
+  to    => 'hexten',
+  msg   => 'Testing...',
+  label => 'Test',
+  title => 'Hoot',
+  uri   => 'http://hexten.net/'
+ ),
+ {
+  status           => 'success',
+  response_code    => 2201,
+  response_message => 'OK'
+ },
+ 'send_notification via api';
+
 is_deeply $not->last,
  {
   status           => 'success',
@@ -170,6 +185,7 @@ handle_request {
     response_message => 'Invalid Credentials'
   };
   $resp->code( 401 );
+  $resp->message( 'Not authenticated' );
   return $resp;
 };
 
@@ -180,6 +196,38 @@ want_error {
   );
 }
 qr{1101 Invalid Credentials}i, 'error from notifo';
+
+handle_request {
+  my $req = shift;
+  my $resp = response {};
+  $resp->code( 401 );
+  $resp->message( 'Not authenticated' );
+  $resp->content( '' );
+  return $resp;
+};
+
+want_error {
+  $not->send_notification(
+    to  => 'hexten',
+    msg => 'Testing...',
+  );
+}
+qr{401 Not authenticated}i, 'error from LWP::UserAgent';
+
+handle_request {
+  my $req = shift;
+  my $resp = response {};
+  $resp->content( '' );
+  return $resp;
+};
+
+want_error {
+  $not->send_notification(
+    to  => 'hexten',
+    msg => 'Testing...',
+  );
+}
+qr{JSON}i, 'error parsing response';
 
 # vim:ts=2:sw=2:et:ft=perl
 
