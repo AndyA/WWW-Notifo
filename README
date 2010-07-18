@@ -5,20 +5,20 @@ VERSION
     This document describes WWW::Notifo version 0.08
 
 SYNOPSIS
-        use WWW::Notifo;
-        my $notifo = WWW::Notifo->new( username => 'foo', secret => 'xabc123' );
-   
-        # Subscribe a user...
-        my $status = $notifo->subscribe_user( username => 'bar' );
-    
-        # Send a notification
-        my $status = $notifo->send_notification(
-           to    => 'someone',
-           msg   => 'Hello!',
-           label => 'JAPH',
-           title => 'Boo',
-           uri   => 'http://example.com/'
-        );
+      use WWW::Notifo;
+      my $notifo = WWW::Notifo->new( username => 'foo', secret => 'xabc123' );
+  
+      # Subscribe a user...
+      my $status = $notifo->subscribe_user( username => 'bar' );
+  
+      # Send a notification
+      my $status = $notifo->send_notification(
+        to    => 'someone',
+        msg   => 'Hello!',
+        label => 'JAPH',
+        title => 'Boo',
+        uri   => 'http://example.com/'
+      );
 
 DESCRIPTION
     Notifo (<http://notifo.com/>) is a web based notification service that
@@ -108,6 +108,22 @@ DESCRIPTION
    "last"
     Get the most recent response (a hash ref). Useful in the case of an HTTP
     error (which throws an exception).
+
+  Procedural Interface
+    The following convenience subroutine may be exported:
+
+   "notifo"
+    Send a notification.
+
+      notifo(
+        username  => 'alice',
+        secret    => 'x3122b4c4d3bad5e8d7397f0501b617ce60afe5d',
+        to        => 'hexten',
+        msg       => 'Testing...',
+        label     => 'Test',
+        title     => 'Hoot',
+        uri       => 'http://hexten.net/'
+      );
 
 AUTHOR
     Andy Armstrong "<andy@hexten.net>"
