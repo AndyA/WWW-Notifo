@@ -1,6 +1,8 @@
 Revision history for WWW-Notifo
 
-0.09
+0.09  2010-Jul-21
+
+      - Depend on LWP::UserAgent 5.815
 
 0.08  2010-Jul-18
 
